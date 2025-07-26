@@ -1,0 +1,32 @@
+name: Manual Trigger with Params
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Name of the personto greet"
+        required: true
+        type: string
+      greeting:
+        description: "Type of greeting"
+        required: true
+        type: string
+      data:
+        description: "Base 64 encoded content of a file"
+        required: false
+        type: string
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decode File content
+        run: |
+          echo "${{inputs.data}}" | base64--decode > ./decoded_file.txt
+      - name: Display greeting
+        run: |
+          echo "${{inputs.greeting}}, ${{inputs.name}}!"
+      - name: Display File content
+        run: |
+          echo "Contents of the file:"
+          cat/decoded_file.txt
