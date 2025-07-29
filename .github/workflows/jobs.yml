@@ -1,4 +1,4 @@
-name: Dep JObs Example
+name: Dep Jobs Example
 
 on: ["push"]
 
